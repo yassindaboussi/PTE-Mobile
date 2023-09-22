@@ -23,8 +23,8 @@ class _LoginState extends State<Login> {
   Future<void> _login(BuildContext context) async {
     final String apiUrl = '$serverPath/api/login';
     final Map<String, dynamic> data = {
-      'email': _emailController,
-      'password': _passwordController,
+      'email': _emailController.text,
+      'password': _passwordController.text,
     };
 
     final response = await http.post(Uri.parse(apiUrl), body: data);
