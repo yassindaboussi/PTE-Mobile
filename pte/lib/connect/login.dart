@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 import '../const/const.dart';
 import '../custom_drawer/navigation_screen.dart';
 
-
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -19,12 +18,37 @@ class _LoginState extends State<Login> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool passwordVisible = true;
+  String emailErrorText = "";
+  String passwordErrorText = "";
 
   Future<void> _login(BuildContext context) async {
+    // Clear previous error messages
+    setState(() {
+      emailErrorText = "";
+      passwordErrorText = "";
+    });
+
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      if (email.isEmpty) {
+        setState(() {
+          emailErrorText = 'Email cannot be empty';
+        });
+      }
+      if (password.isEmpty) {
+        setState(() {
+          passwordErrorText = 'Password cannot be empty';
+        });
+      }
+      return; // Exit the function if fields are empty
+    }
+
     final String apiUrl = '$serverPath/api/login';
     final Map<String, dynamic> data = {
-      'email': _emailController.text,
-      'password': _passwordController.text,
+      'email': email,
+      'password': password,
     };
 
     final response = await http.post(Uri.parse(apiUrl), body: data);
@@ -37,7 +61,7 @@ class _LoginState extends State<Login> {
       await prefs.setString('role', responseData['roles'][0]);
       await prefs.setString('image', responseData['image']);
 
-      print("token ====>>>>>   "+responseData['token']);
+      print("token ====>>>>>   " + responseData['token']);
 
       Navigator.push(
         context,
@@ -45,7 +69,7 @@ class _LoginState extends State<Login> {
       );
     } else {
       // Login failed
-      CustomDialog().show(context,'Login Error', responseData['message']);
+      CustomDialog().show(context, 'Login Error', responseData['message']);
       print(responseData['message']);
     }
   }
@@ -106,6 +130,7 @@ class _LoginState extends State<Login> {
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
+                        errorText: emailErrorText, // Add error text
                       ),
                     ),
                     SizedBox(height: 15),
@@ -135,10 +160,11 @@ class _LoginState extends State<Login> {
                         ),
                         filled: true,
                         fillColor: Colors.grey[200],
+                        errorText: passwordErrorText, // Add error text
                       ),
                       obscureText: passwordVisible,
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
                     SizedBox(
                       width: double.infinity,
                       height: 45,
@@ -157,7 +183,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 14),
+                      padding: const EdgeInsets.only(top: 12),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
