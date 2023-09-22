@@ -150,8 +150,7 @@ class _UserListViewState extends State<UserListView> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          color:
-                          PteAppTheme.buildLightTheme().colorScheme.background,
+                          color: PteAppTheme.buildLightTheme().colorScheme.background,
                           child: Padding(
                             padding: const EdgeInsets.only(
                               left: 16,

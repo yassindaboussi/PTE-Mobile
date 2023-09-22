@@ -105,13 +105,35 @@ class _TeamScreenState extends State<TeamScreen> {
                                   children: [
                                     Text(
                                       '${TechnicalTeam['fullname']}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18.8,
                                       ),
                                     ),
-                                    Text('${TechnicalTeam['email']}'),
-                                    Text('${TechnicalTeam['specialization']}'),
+                                    Text('${TechnicalTeam['email']}',
+                                      style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey.withOpacity(0.8),
+                                    )
+                                    ),
+                                    Text('${TechnicalTeam['phone']}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    Text('${TechnicalTeam['experienceLevel']}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.withOpacity(0.8),
+                                      ),
+                                    ),
+                                    Text('${TechnicalTeam['specialization']}',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey.withOpacity(0.8),
+                                        )),
                                   ],
                                 ),
                                 children: <Widget>[

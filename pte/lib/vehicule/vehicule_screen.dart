@@ -124,14 +124,25 @@ class _VehicleScreenState extends State<VehicleScreen> {
                                   children: [
                                     Text(
                                       'Model: ${vehicle['model']}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18.8,
                                       ),
                                     ),
                                     Text(
-                                        'Number: ${vehicle['registration_number']}'),
-                                    Text('Type: ${vehicle['type']}'),
+                                        'Number: ${vehicle['registration_number']}',
+                                      style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey.withOpacity(0.8),
+                                    ),
+                                    ),
+                                    Text('Type: ${vehicle['type']}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.withOpacity(0.8),
+                                      ),
+                                    ),
                                   ],
                                 ),
                                 children: <Widget>[

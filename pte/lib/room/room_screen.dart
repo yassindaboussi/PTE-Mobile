@@ -122,13 +122,22 @@ class _RoomScreenState extends State<RoomScreen> {
                                 children: [
                                   Text(
                                     'Label: ${room['label']}',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18.8,
                                     ),
                                   ),
-                                  Text('Location: ${room['location']}'),
-                                  Text('Capacity: ${room['capacity']}'),
+                                  Text('Location: ${room['location']}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.withOpacity(0.8),
+                                      )),
+                                  Text('Capacity: ${room['capacity']}',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.withOpacity(0.8),
+                                      )),
                                 ],
                               ),
                             ],
