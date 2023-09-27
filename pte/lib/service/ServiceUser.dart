@@ -126,10 +126,26 @@ Future<void> DeletePhotoUser(String idUser,String Token,Function() onPhotoUpdate
   }
 }
 
+Future<void> deleteUser(String token,String id) async {
+  final uri = Uri.parse('$serverPath/api/users/delete/$id');
 
+  try {
+    final response = await http.delete(
+      uri,
+      headers: {'Authorization': 'Bearer $token'},
+    );
 
-
-
+    if (response.statusCode == 200) {
+      print('User deleted successfully.');
+    } else if (response.statusCode == 404) {
+      print('ID is not valid.');
+    } else {
+      print('Failed to delete user. Status code: ${response.statusCode}');
+    }
+  } catch (error) {
+    print('Error: $error');
+  }
+}
 
 
 

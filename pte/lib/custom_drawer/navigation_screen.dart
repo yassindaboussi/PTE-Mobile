@@ -5,7 +5,7 @@ import '../technical_team/team_screen.dart';
 import '../vehicule/vehicule_screen.dart';
 import 'drawer_user_controller.dart';
 import 'home_drawer.dart';
-import '../home_screen.dart';
+import '../home/home_screen.dart';
 import '../user_management/user_home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
-  Widget screenView = const MyHomePage();
+  Widget screenView =  MyHomePage();
   DrawerIndex drawerIndex = DrawerIndex.home;
 
   @override
@@ -39,7 +39,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       if (drawerIndex == DrawerIndex.home) {
         if (mounted) {
           setState(() {
-            screenView = const MyHomePage();
+            screenView =  MyHomePage();
           });
         }
       } else if (drawerIndex == DrawerIndex.usermanagement) {

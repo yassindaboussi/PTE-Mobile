@@ -45,7 +45,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
             pickedDate.day,
             pickedTime.hour,
             pickedTime.minute,
-          );
+          ).toUtc().add(Duration(hours: 1));
         });
       }
     }
@@ -73,7 +73,7 @@ class _AddEventDialogState extends State<AddEventDialog> {
             pickedDate.day,
             pickedTime.hour,
             pickedTime.minute,
-          );
+          ).toUtc().add(Duration(hours: 1));
         });
       }
     }

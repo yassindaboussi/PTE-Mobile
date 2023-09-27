@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../const/const.dart';
+import '../service/ServiceUser.dart';
 import '../user_profile/cv_screen.dart';
+import 'dialog/DeleteUserDialog.dart';
 import 'pte_app_theme.dart';
 
 class UserListView extends StatefulWidget {
@@ -68,21 +70,17 @@ class _UserListViewState extends State<UserListView> {
                         ),
                       ),
                       SizedBox(height: 16),
-                      Text('Full Name: ${widget.userData['fullName']}'),
-                      Text('Title: ${widget.userData['title']}'),
-                      Text('Email: ${widget.userData['email']}'),
-                      Text('Phone: ${widget.userData['phone']}'),
-                      Text('Address: ${widget.userData['address']}'),
-                      Text(
-                        'Date Of Birth: ${widget.userData['DateOfBirth'].split('T')[0]}',
-                      ),
-                      Text(
-                        'Hiring Date: ${widget.userData['hiringDate'].split('T')[0]}',
-                      ),
-                      Text('Department: ${widget.userData['department']}'),
-                      Text('Role: ${widget.userData['roles'][0]}'),
-                      Text('Nationality: ${widget.userData['nationality']}'),
-                      Text('Experience: ${widget.userData['experience']} year(s)'),
+                      _buildDetailRow(Icons.person, 'Full Name', widget.userData['fullName'].toString()),
+                      _buildDetailRow(Icons.title, 'Title', widget.userData['title'].toString()),
+                      _buildDetailRow(Icons.email, 'Email', widget.userData['email'].toString()),
+                      _buildDetailRow(Icons.phone, 'Phone', widget.userData['phone'].toString()),
+                      _buildDetailRow(Icons.home, 'Address', widget.userData['address'].toString()),
+                      _buildDetailRow(Icons.date_range, 'Date Of Birth', widget.userData['DateOfBirth'].split('T')[0].toString()),
+                      _buildDetailRow(Icons.calendar_today, 'Hiring Date', widget.userData['hiringDate'].split('T')[0].toString()),
+                      _buildDetailRow(Icons.work, 'Department', widget.userData['department'].toString()),
+                      _buildDetailRow(Icons.group, 'Role', widget.userData['roles'][0].toString()),
+                      _buildDetailRow(Icons.flag, 'Nationality', widget.userData['nationality'].toString()),
+                      _buildDetailRow(Icons.work_outline, 'Experience', '${widget.userData['experience']} year(s)'),
                       SizedBox(height: 16),
                       Align(
                         alignment: Alignment.centerRight,
@@ -109,6 +107,21 @@ class _UserListViewState extends State<UserListView> {
       },
     );
   }
+
+  Widget _buildDetailRow(IconData icon, String label, dynamic value) {
+    String displayValue = value is int ? value.toString() : value;
+    return Row(
+      children: [
+        Icon(icon, color: PteAppTheme.buildLightTheme().primaryColor),
+        SizedBox(width: 8),
+        Expanded( // Add this Expanded widget
+          child: Text('$label: $displayValue'),
+        ),
+      ],
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -238,6 +251,7 @@ class _UserListViewState extends State<UserListView> {
                                 icon: Icon(Icons.delete_outline, color: Colors.red),
                                 onPressed: () {
                                   print("Delete");
+                                  _showDeleteUserDialog(widget.userData['_id']);
                                 },
                               );
                             } else {
@@ -268,6 +282,22 @@ class _UserListViewState extends State<UserListView> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showDeleteUserDialog(String UserId) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? token = prefs.getString('token');
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return DeleteUserDialog(
+          onDeleteUser: () async {
+            await deleteUser(token!,UserId);
+            //refresh list after delete
+          },
+        );
+      },
     );
   }
 

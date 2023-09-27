@@ -225,6 +225,7 @@ class CalendarWidget extends StatelessWidget {
             final DateTime eventEndTime = tappedAppointment.endTime;
 
             // Print event information
+            print('applicantImage : $applicantImage');
             print('Event ID: $eventId');
             print('Event Start Time: $eventStartTime');
             print('Event End Time: $eventEndTime');

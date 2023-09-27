@@ -71,7 +71,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
     drawerList = <DrawerList>[
       DrawerList(
         index: DrawerIndex.home,
-        labelName: 'Home',
+        labelName: 'Dashboard',
         icon: const Icon(Icons.home),
       ),
       DrawerList(

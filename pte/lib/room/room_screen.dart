@@ -266,7 +266,7 @@ class _RoomScreenState extends State<RoomScreen> {
                     cursorColor: PteAppTheme.buildLightTheme().primaryColor,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Label/Location',
+                      hintText: 'Label/Location/Capacity',
                     ),
                   ),
                 ),

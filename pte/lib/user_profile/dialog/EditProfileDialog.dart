@@ -154,13 +154,23 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                 controller: _addressController,
               ),
               SizedBox(height: 12),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Family Situation',
-                  border: OutlineInputBorder(),
-                ),
-                controller: _familySituationController,
-              ),
+              DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    labelText: 'Family Situation ',
+                    border: OutlineInputBorder(),
+                  ),
+                  value: _familySituationController.text,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _familySituationController.text = newValue!;
+                    });
+                  },
+                  items: ['single', 'married'].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList()),
               SizedBox(height: 12),
               Row(
                 children: [
@@ -185,13 +195,23 @@ class _EditProfileDialogState extends State<EditProfileDialog> {
                 controller: _dateOfBirthController,
               ),
               SizedBox(height: 12),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Gender',
-                  border: OutlineInputBorder(),
-                ),
-                controller: _genderController,
-              ),
+              DropdownButtonFormField<String>(
+                  decoration: InputDecoration(
+                    labelText: 'Gender',
+                    border: OutlineInputBorder(),
+                  ),
+                  value: _genderController.text,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _genderController.text = newValue!;
+                    });
+                  },
+                  items: ['male', 'female'].map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList()),
               SizedBox(height: 12),
               TextFormField(
                 decoration: InputDecoration(
