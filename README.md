@@ -1,6 +1,6 @@
 <div id="top"></div>
 <h1 align="center"> PTE 📱 </h1>
-🚀 Transforming an Angular web application into a user-friendly mobile application to enhance the overall user experience. 🌟
+🚀 Transformation of a website into a mobile application for the management of human and material resources. 🌟
 <br/>
 <h1 align="center"> Screenshot </h1>
 <br/>
