@@ -5,7 +5,6 @@
 <h1 align="center"> Screenshot </h1>
 <br/>
 
-
 <table align="center">
   <tr>
     <td><img src="capture/2.jpg" alt="Image 2" width="180" height="auto"></td>
