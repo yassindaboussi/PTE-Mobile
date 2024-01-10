@@ -100,7 +100,6 @@ Please ⭐️ this repo and share it with others
 
 This project is licensed under the **View-Only License**. See the [LICENSE](LICENSE) file for details.
 
-
 </p>
 
 </div>
